@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  api:
+    image: hobbit.azurecr.io/b-goberdhan/planner:master
+    ports:
+      - '4000:3000'
+    depends_on:
+      - dev-planner-db
+    environment:
+    - DATABASE_HOST=dev-planner-db
+    - DATABASE_USERNAME=SA
+    - DATABASE_PASSWORD=password3441!
+    - DATABASE_RUN_MIGRATIONS=true
+    - AUTH_JWT_SECRET=secret
+  dev-planner-db:
+    build: ./dockerdb
+    ports:
+      - '1433:1433'
+    volumes:
+      - db:/var/lib/mssql
+volumes:
+  db: 
+    driver: local
