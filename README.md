@@ -8,6 +8,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 2. `az acr login -n hobbit`
 3. `docker compose pull` To get the latest image from planner repo's master branch
 4. `docker-compose up`
+5. In another terminal, run `yarn run dev`
 
 
 ### 
