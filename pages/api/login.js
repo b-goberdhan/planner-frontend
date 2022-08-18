@@ -1,4 +1,4 @@
-import { setCookie } from 'cookies-next'
+import { deleteCookie, setCookie } from 'cookies-next'
 import checkIsResponseOK from "../../lib/checkIsResponseOK";
 
 export default function handler(req, res) {
@@ -14,7 +14,8 @@ export default function handler(req, res) {
     .then(response => response.json())
     .then(data => {
         if (data.access_token) {
-            setCookie('access_token', data.access_token, {req, res})
+            deleteCookie('access_token', {req, res});
+            setCookie('access_token', data.access_token, {req, res});
             res.redirect('/goals');
         }
     }).catch(() => {
