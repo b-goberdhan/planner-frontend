@@ -1,7 +1,25 @@
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { FiChevronRight } from 'react-icons/fi'
+
+const buttonStyle = `
+    flex justify-between
+    items-center w-48 h-12 
+    pl-4 p-2 bg-gray-800 
+    text-white 
+    hover:opacity-70
+    cursor-pointer
+`;
+
 export default function Sidebar({
-   
+   isOpen
 }) {
+    const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+    
+    useEffect(() => {
+        setIsSideBarOpen(isOpen);
+    }, [isOpen])
+
     const router = useRouter();
     const onOverviewClicked = () => {
         router.push("/");
@@ -13,10 +31,17 @@ export default function Sidebar({
         router.push("/settings")
     }
     return (
-        <div class="flex flex-col w-48 h-full bg-slate-400 pt-12">
-            <div class="flex items-center w-48 h-12 p-2" onClick={onOverviewClicked}>Overview</div>
-            <div class="flex items-center w-48 h-12 p-2" onClick={onGoalsClicked}>Goals</div>
-            <div class="flex items-center w-48 h-12 p-2" onClick={onSettingsClicked}>Settings</div>
-        </div>
+        isSideBarOpen && 
+        (<div className="flex flex-col w-48 h-full bg-gray-500 ml-3">
+            <div className={buttonStyle} onClick={onOverviewClicked}>
+                Overview
+            </div>
+            <div className={buttonStyle} onClick={onGoalsClicked}>
+                Goals
+            </div>
+            <div className={buttonStyle} onClick={onSettingsClicked}>
+                Settings
+            </div>
+        </div>)
     )
 }

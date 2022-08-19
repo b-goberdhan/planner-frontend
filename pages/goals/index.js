@@ -1,12 +1,11 @@
 import { useRouter } from 'next/router'
+import Card from '../../components/card'
 import FloatingActionButton from '../../components/floating-action-button'
-import WithSideBar from '../../components/layouts/withSidebar'
 import authorizedClientFetch from '../../lib/authorizedClientFetch'
 import authorizedServerFetch from '../../lib/authorizedServerFetch'
 import withAuthentication from '../../lib/withAuthentication'
 
 export default function Goals({goals}) {
-    console.log(goals)
     const router = useRouter()
     const createGoal =  async () => {
         const response = await authorizedClientFetch('/api/goals/new', {
@@ -17,20 +16,32 @@ export default function Goals({goals}) {
         });
         if (response.status === 200) {
             if (response.status === 200) {
-                router.push(`/goals/${goal.id}`)
+                router.push(`/goals/${goal.id}`);
             }
         }
         
     };  
+
+    const openGoal = (goalId) => {
+        router.push(`/goals/${goalId}`);
+    }
+
     return (
-        <WithSideBar>
-            <div class="w-full h-full p-5 bg-slate-200" id="sidebar">
-                {goals.map(goal => goal.name + ", ")}
-                <div class="w-24 h-24 absolute bottom-0 right-0">
-                    <FloatingActionButton onClick={createGoal}/>
-                </div>
+        <div className="overflow-y flex max-w-7xl flex-wrap p-5 " id="sidebar">
+            {
+                goals.map(goal => (
+                    <div onClick={() => openGoal(goal.id)}>
+                        <Card 
+                            name={goal.name} 
+                            description={goal.description} 
+                            numberOfWeeks={goal.weeks.length}/>
+                    </div>)
+                )
+            }
+            <div className="w-24 h-24 absolute bottom-0 right-0">
+                <FloatingActionButton onClick={createGoal}/>
             </div>
-        </WithSideBar>
+        </div>
 
     )
 }

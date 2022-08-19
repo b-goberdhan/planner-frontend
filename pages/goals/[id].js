@@ -1,19 +1,16 @@
 import { useRouter } from 'next/router'
-import WithSideBar from '../../components/layouts/withSidebar'
 import authorizedServerFetch from '../../lib/authorizedServerFetch'
 import withAuthentication from '../../lib/withAuthentication'
 
 export default function Goal({
     goal
 }) {
-    console.log(goal)
     const router = useRouter()
     return (
-        <WithSideBar>
-            <div class="w-full h-full p-5 bg-slate-200" id="sidebar">
-                {goal.name}
-            </div>
-        </WithSideBar>
+        <div class="w-full h-full p-5 bg-slate-200" id="sidebar">
+            {goal.name}
+        </div>
+    
 
     )
 }

@@ -9,7 +9,7 @@ export default function Login({hasError}) {
     return (
         <div className="w-full h-full flex justify-center items-center">
            <div className="w-full max-w-xs">
-                <form action="/api/login" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                <form action="/api/login" method="post" className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         <div class="mb-4">
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                                 Email
@@ -17,7 +17,7 @@ export default function Login({hasError}) {
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
                                 name="email" onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Username"/>
                         </div>
-                        <div class="">
+                        <div className="">
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                                 Password
                             </label>
@@ -25,8 +25,8 @@ export default function Login({hasError}) {
                                 name="password" onChange={(e) => setPassword(e.target.value)} type="password" placeholder="******************"/>
                             
                             </div>
-                        { hasError && <p class="text-center text-red-500 text-sm">Incorrect email or password</p>}
-                        <div class="mt-4 flex items-center justify-between">
+                        { hasError && <p className="text-center text-red-500 text-sm">Incorrect email or password</p>}
+                        <div className="mt-4 flex items-center justify-between">
                             <button className="bg-blue-500 disabled:bg-blue-300 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" 
                                 type="submit"
                                 disabled={email === '' || password === ''}>
