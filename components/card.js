@@ -10,7 +10,7 @@ const Card = ({
             bg-gray-400 
             hover:bg-gray-500
             border-2 
-            border-gray-700">
+            border-gray-600">
             <div>
                 <div>{name}</div>
                 <div>{description}</div>

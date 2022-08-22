@@ -9,12 +9,11 @@ export default function Goals({goals}) {
     const router = useRouter()
     const createGoal =  async () => {
         const response = await authorizedClientFetch('/api/goals/new', {
-            method: 'POST',
-            body: {
-                name: `New Goal ${goals.length + 1}`
-            }
-        });
+            name: `New Goal ${goals.length + 1}`
+        }, 
+        { method: 'POST' });
         if (response.status === 200) {
+            const goal = response.data;
             if (response.status === 200) {
                 router.push(`/goals/${goal.id}`);
             }
